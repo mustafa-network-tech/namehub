@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fafafa;
+  --card: #ffffff;
+  --ink: #121212;
+  --muted: #737373;
+  --line: #e5e5e5;
+  --accent: #2563eb;
+  --emerald: #10b981;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-base {
+    @apply rounded-2xl border border-line bg-card shadow-soft;
+  }
+
+  .btn-touch {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-4 text-base font-medium transition-colors;
+  }
+
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+}
+
+/* Lightweight scroll lock for open drawers */
+.scroll-locked {
+  overflow: hidden;
+}
+
+/* Internal promo banner marquee */
+@keyframes promo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: promo-marquee 22s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* Pre-launch landing: çift yönlü marquee */
+@keyframes prelaunch-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes prelaunch-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marquee-left {
+  animation: prelaunch-marquee-left 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee-right {
+  animation: prelaunch-marquee-right 48s linear infinite;
+  will-change: transform;
+}
+
+/* Pre-launch landing: yumuşak arka plan blob hareketi */
+@keyframes prelaunch-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -24px, 0) scale(1.06);
+  }
+}
+
+.animate-float-slow {
+  animation: prelaunch-float 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-slower {
+  animation: prelaunch-float 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Pre-launch landing: yumuşak yukarı kayma girişi */
+@keyframes prelaunch-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: prelaunch-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-left,
+  .marquee-right,
+  .animate-float-slow,
+  .animate-float-slower,
+  .animate-rise {
+    animation: none;
+  }
+}
