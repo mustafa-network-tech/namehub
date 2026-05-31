@@ -5,11 +5,31 @@ import { SITE_NAME } from "@/lib/constants";
 
 // Sosyal paylaşım görselinin mutlak URL'e çözülmesi için site kökü.
 // Production alan adını NEXT_PUBLIC_SITE_URL ile ayarlayabilirsin.
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.namehub.tr";
+const FALLBACK_SITE_URL = "https://www.namehub.tr";
+
+// NEXT_PUBLIC_SITE_URL protokolsüz (ör. "namehub.tr") veya hatalı girilse bile
+// new URL() build'i çökertmesin diye güvenli şekilde normalize ediyoruz.
+function resolveSiteUrl(): URL {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const candidates = [
+    raw,
+    raw && !/^https?:\/\//i.test(raw) ? `https://${raw}` : undefined,
+    FALLBACK_SITE_URL,
+  ].filter(Boolean) as string[];
+  for (const candidate of candidates) {
+    try {
+      return new URL(candidate);
+    } catch {
+      // sıradaki adaya geç
+    }
+  }
+  return new URL(FALLBACK_SITE_URL);
+}
+
 const OG_IMAGE = "/images/og-namehub.png";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: resolveSiteUrl(),
   title: {
     default: `${SITE_NAME} – İsmini Bul, Markanı Kur, Dijital Kimliğini Oluştur`,
     template: `%s`,
