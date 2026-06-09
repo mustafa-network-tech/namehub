@@ -31,7 +31,7 @@ export default function MobileDrawer({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 md:hidden">
+    <div className="fixed inset-0 z-50 lg:hidden">
       <button
         type="button"
         aria-label={locale === "tr" ? "Kapat" : "Close"}
