@@ -1,5 +1,5 @@
-import PreLaunchPage from "@/components/prelaunch/PreLaunchPage";
+import { redirect } from "next/navigation";
 
 export default function RootPage() {
-  return <PreLaunchPage />;
+  redirect("/tr");
 }

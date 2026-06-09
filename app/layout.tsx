@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     "evcil hayvan isimleri",
   ],
   openGraph: {
-    title: "NameHub Çok Yakında",
+    title: `${SITE_NAME} – İsmini Bul, Markanı Kur, Dijital Kimliğini Oluştur`,
     description: "İsmini bul, markanı kur, dijital kimliğini oluştur.",
     siteName: SITE_NAME,
     locale: "tr_TR",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NameHub Çok Yakında",
+    title: `${SITE_NAME} – İsmini Bul, Markanı Kur, Dijital Kimliğini Oluştur`,
     description: "İsmini bul, markanı kur, dijital kimliğini oluştur.",
     images: [OG_IMAGE],
   },
