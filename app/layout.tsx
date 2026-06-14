@@ -4,8 +4,6 @@ import "./globals.css";
 import Toast from "@/components/ui/Toast";
 import { SITE_NAME } from "@/lib/constants";
 
-const GA_ID = "G-53X684HB55";
-
 // Sosyal paylaşım görselinin mutlak URL'e çözülmesi için site kökü.
 // Production alan adını NEXT_PUBLIC_SITE_URL ile ayarlayabilirsin.
 const FALLBACK_SITE_URL = "https://www.namehub.tr";
@@ -86,7 +84,7 @@ export default function RootLayout({
       </body>
       {/* Google Analytics */}
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        src="https://www.googletagmanager.com/gtag/js?id=G-53X684HBS5"
         strategy="afterInteractive"
       />
       <Script id="ga-init" strategy="afterInteractive">
@@ -94,7 +92,7 @@ export default function RootLayout({
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${GA_ID}');
+          gtag('config', 'G-53X684HBS5');
         `}
       </Script>
     </html>
