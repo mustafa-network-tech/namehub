@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Toast from "@/components/ui/Toast";
 import { SITE_NAME } from "@/lib/constants";
+
+const GA_ID = "G-53X684HB55";
 
 // Sosyal paylaşım görselinin mutlak URL'e çözülmesi için site kökü.
 // Production alan adını NEXT_PUBLIC_SITE_URL ile ayarlayabilirsin.
@@ -81,6 +84,19 @@ export default function RootLayout({
         {children}
         <Toast />
       </body>
+      {/* Google Analytics */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="ga-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}
+      </Script>
     </html>
   );
 }
